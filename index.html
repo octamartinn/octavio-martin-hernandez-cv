@@ -147,6 +147,62 @@ h2.pre::before{transform:scaleX(.12)}
 .proj p{margin:0;font-size:var(--t-s)}
 .pill{display:inline-block;font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--teal);background:var(--sage);padding:2px 9px;border-radius:999px}
 @media (max-width:760px){.projects{grid-template-columns:1fr}}
+/* Proyecto destacado (logro) */
+.proj.feat{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:0;padding:0}
+.proj.feat::before{z-index:1}
+.proj.feat.no-photo{grid-template-columns:1fr}
+.feat-photo{margin:0;background:var(--rule);min-height:100%}
+.feat-photo img{width:100%;height:100%;min-height:240px;object-fit:cover;display:block}
+.feat-body{padding:24px 28px 26px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.feat-body .meta{margin:0}
+.feat-role{padding-top:10px;border-top:1px solid var(--rule)}
+.tags{list-style:none;margin:2px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.tags li{border:1.5px solid var(--sage);border-radius:999px;padding:3px 11px;font-size:var(--t-xs);font-weight:500;line-height:1.35}
+.feat-links{display:flex;flex-wrap:wrap;gap:4px 20px;margin-top:4px;font-size:var(--t-s)}
+.feat-links a{display:inline-flex;align-items:center;gap:6px;font-weight:600;color:var(--sage-deep);text-underline-offset:3px}
+.feat-links svg{width:14px;height:14px;flex:none}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media (max-width:760px){
+  .proj.feat{grid-template-columns:1fr}
+  .feat-photo img{min-height:0;aspect-ratio:16/9;height:auto}
+  .feat-body{padding:20px 20px 22px}
+  .feat-links{flex-direction:column;gap:0}
+  .feat-links a{min-height:44px}
+}
+
+/* ---------- Noticias ---------- */
+.news{list-style:none;margin:0;padding:0;max-width:880px}
+.news-item{display:grid;grid-template-columns:120px minmax(0,1fr);gap:4px 24px;padding:22px 0;border-top:1px solid var(--rule)}
+.news-item:first-child{border-top:0;padding-top:0}
+.news-date{font-family:var(--font-display);font-weight:700;font-size:1.25rem;line-height:1.2;color:var(--sage-deep);font-variant-numeric:tabular-nums}
+.news-body{min-width:0;display:flex;flex-direction:column;gap:6px}
+.news-src{margin:0;font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--meta)}
+.news-lang{margin-left:8px;font-weight:600;letter-spacing:.04em;text-transform:none;color:var(--muted)}
+.news-lang:empty{display:none}
+.news-body h3{margin:0;font-weight:600;font-size:var(--t-l);line-height:1.3;text-wrap:balance}
+.news-body h3 a{text-decoration-color:var(--sage);text-decoration-thickness:2px;text-underline-offset:4px}
+@media (hover:hover){.news-body h3 a:hover{color:var(--sage-deep)}}
+.news-body h3 svg{width:16px;height:16px;margin-left:6px;vertical-align:-1px;color:var(--sage-deep)}
+.news-body p{margin:0;font-size:var(--t-s)}
+.news-post summary{display:inline-flex;align-items:center;gap:8px;min-height:44px;cursor:pointer;font-weight:600;font-size:var(--t-s);color:var(--sage-deep);list-style:none}
+.news-post summary::-webkit-details-marker{display:none}
+.news-post summary::before{content:"";flex:none;width:22px;height:22px;border-radius:50%;background:linear-gradient(var(--teal),var(--teal)) center/10px 2px no-repeat,linear-gradient(var(--teal),var(--teal)) center/2px 10px no-repeat,var(--sage);transition:background-size .3s ease,transform .35s cubic-bezier(.65,0,.25,1)}
+.news-post details[open]:not(.closing) summary::before{background-size:10px 2px,2px 0,auto;transform:rotate(180deg)}
+.news-post .lbl-open,.news-post details[open]:not(.closing) .lbl-closed{display:none}
+.news-post details[open]:not(.closing) .lbl-open{display:inline}
+.news-post .post-wrap{overflow:hidden}
+.news-src .live{margin-left:10px;vertical-align:1px;letter-spacing:.08em}
+.news-body h3 svg{transition:transform .25s ease}
+@media (hover:hover){.news-body h3 a:hover svg{transform:translate(2px,-2px)}}
+.news-item{transition:opacity .6s ease,transform .6s cubic-bezier(.2,.8,.2,1)}
+.news-item.pre{opacity:.2;transform:translateY(18px)}
+.news-post .post-text{display:flex;flex-direction:column;gap:12px;padding:6px 0 4px 16px;border-left:3px solid var(--sage);max-width:66ch}
+.news-post .post-text p{font-size:var(--t-m)}
+@media (max-width:560px){
+  .news-item{grid-template-columns:1fr;gap:6px;padding:20px 0}
+  .news-date{font-size:1.125rem}
+  .news-post .post-text{padding-left:12px}
+}
 
 /* ---------- Leadership ---------- */
 .lead-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px;max-width:1000px}
@@ -266,7 +322,7 @@ footer{padding:22px clamp(20px,5vw,72px) calc(22px + env(safe-area-inset-bottom,
   .band .lead{animation-delay:.85s}.band .cta{animation-delay:.95s}.band .facts{animation-delay:1.05s}
   .side-photo img,.hero-photo img{animation:dev 1.4s ease-out both}
 }
-@media (prefers-reduced-motion:reduce){h2::before,.proj::before,.dot{transition:none}}
+@media (prefers-reduced-motion:reduce){h2::before,.proj::before,.dot{transition:none}.news-item,.news-post summary::before,.news-body h3 svg{transition:none}}
 @keyframes wipe{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
 @keyframes rise{from{transform:translateY(105%)}to{transform:none}}
 @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
@@ -282,6 +338,7 @@ footer{padding:22px clamp(20px,5vw,72px) calc(22px + env(safe-area-inset-bottom,
       <nav aria-label="Secciones">
         <ul class="toc" id="toc">
           <li><a href="#sobre-mi" data-i18n="n0">Sobre mí</a></li>
+          <li><a href="#noticias" data-i18n="n7">Noticias</a></li>
           <li><a href="#experiencia" data-i18n="n1">Experiencia</a></li>
           <li><a href="#proyectos" data-i18n="n2">Proyectos</a></li>
           <li><a href="#liderazgo" data-i18n="n3">Liderazgo</a></li>
@@ -328,6 +385,51 @@ footer{padding:22px clamp(20px,5vw,72px) calc(22px + env(safe-area-inset-bottom,
       </div>
     </section>
 
+    <section class="sec" id="noticias" data-spy>
+      <h2 data-i18n="hN">Noticias</h2>
+      <!--
+        Para añadir una noticia, copia un bloque <li class="news-item"> … </li> y pégalo
+        el primero de la lista (las más recientes van arriba). Cambia la fecha (datetime en
+        formato AAAA-MM-DD), el medio, el titular, el resumen y el enlace.
+      -->
+      <ol class="news">
+        <li class="news-item news-post">
+          <time class="news-date" datetime="2026-11-17" data-i18n="nd0">17 nov 2026</time>
+          <div class="news-body">
+            <p class="news-src" data-i18n="nsrc0">Mi experiencia</p>
+            <h3 data-i18n="nh0">Ganamos la sede de Sevilla del NASA Space Apps Challenge 2026</h3>
+            <p data-i18n="nx0">Cómo fue el fin de semana con el equipo FLAMA y qué desarrollé para el reto «Flame in Freefall».</p>
+            <details>
+              <summary><span class="lbl-closed" data-i18n="nmore">Leer más</span><span class="lbl-open" data-i18n="nless">Leer menos</span></summary>
+              <div class="post-wrap"><div class="post-text">
+                <p data-i18n="ps1">Del 13 al 15 de noviembre participé con el equipo FLAMA en el NASA International Space Apps Challenge 2026, en la sede de la Agencia Espacial Española, en el Edificio CREA de Sevilla. Lo organizaron la Agencia Espacial Española y Andalucía Emprende (Junta de Andalucía), en colaboración con la NASA, y reunió a más de 100 participantes repartidos en 20 equipos.</p>
+                <p data-i18n="ps2">Elegimos el reto «Flame in Freefall»: entender cómo se comporta el fuego en microgravedad y cómo mejorar la seguridad contra incendios en misiones espaciales. En 48 horas construimos una solución con cuatro partes: un dashboard con datos de la NASA, una simulación 3D sobre una pieza CAD, FLAMMY, un asistente virtual que guía a quien usa la herramienta, y un asistente de IA con el que se puede conversar por voz en tiempo real.</p>
+                <p data-i18n="ps3">Mi parte fue ese asistente conversacional. Lo desarrollé con Gemini Live como solución principal y preparé un plan B 100 % local con Ollama, que funciona sin depender de servicios externos. Después lo integré en la web del equipo, para que todo se usara como una única herramienta.</p>
+                <p data-i18n="ps4">Formamos el equipo Juan García Delgado, Ana Luna Martín, Alejandro Quintas Escobar, Álvaro Cárdenas Díaz y yo. Los cinco venimos de eUSRacing, el equipo de MotoStudent de la Universidad de Sevilla.</p>
+                <p data-i18n="ps5">El resultado fue el primer puesto en Sevilla y el pase a la fase nacional, donde competiremos con los equipos ganadores del resto de sedes de España. Gracias a la Agencia Espacial Española, a Andalucía Emprende y a todas las personas que hicieron posible el evento en Sevilla. Ahora toca preparar la siguiente fase.</p>
+              </div></div>
+            </details>
+          </div>
+        </li>
+        <li class="news-item">
+          <time class="news-date" datetime="2026-11-16" data-i18n="nd1">16 nov 2026</time>
+          <div class="news-body">
+            <p class="news-src">Universidad de Sevilla<span class="news-lang" data-i18n="nlang1"></span></p>
+            <h3><a href="https://stce.us.es/noticias/estudiantes-de-la-us-ganan-el-nasa-space-apps-challenge-en-sevilla-con-mas-de-100" target="_blank" rel="noopener noreferrer">Estudiantes de la US ganan el NASA Space Apps Challenge en Sevilla, con más de 100 participantes<span class="sr-only" data-i18n="nnew1">(se abre en una pestaña nueva)</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+            <p data-i18n="nx1">El equipo FLAMA gana la sede de Sevilla con su proyecto para el reto «Flame in Freefall» y representará a Sevilla en la fase nacional.</p>
+          </div>
+        </li>
+        <li class="news-item">
+          <time class="news-date" datetime="2026-11-16" data-i18n="nd2">16 nov 2026</time>
+          <div class="news-body">
+            <p class="news-src">Junta de Andalucía · Andalucía Emprende<span class="news-lang" data-i18n="nlang2"></span></p>
+            <h3><a href="https://www.juntadeandalucia.es/emprendimientoandaluz/listado-de-noticias/andalucia-emprende-y-la-agencia-espacial-espanola-convierten-sevilla-en-punto" target="_blank" rel="noopener noreferrer">Andalucía Emprende y la Agencia Espacial Española convierten Sevilla en punto de encuentro del talento espacial y tecnológico<span class="sr-only" data-i18n="nnew2">(se abre en una pestaña nueva)</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+            <p data-i18n="nx2">Crónica del hackathon en la sede de la Agencia Espacial Española en Sevilla, con un centenar de participantes, en la que FLAMA resultó el equipo ganador.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
     <section class="sec" id="experiencia" data-spy>
       <h2 data-i18n="hB">Experiencia</h2>
       <div class="timeline" id="timeline">
@@ -362,6 +464,30 @@ footer{padding:22px clamp(20px,5vw,72px) calc(22px + env(safe-area-inset-bottom,
     <section class="sec" id="proyectos" data-spy>
       <h2 data-i18n="hC">Proyectos</h2>
       <div class="projects">
+        <article class="proj feat" tabindex="0">
+          <figure class="feat-photo">
+            <img src="space-apps-2026-flama.jpg" loading="lazy" width="1200" height="900"
+                 alt="Equipo FLAMA en el NASA International Space Apps Challenge 2026 de Sevilla, en la sede de la Agencia Espacial Española (Edificio CREA)"
+                 data-alt-es="Equipo FLAMA en el NASA International Space Apps Challenge 2026 de Sevilla, en la sede de la Agencia Espacial Española (Edificio CREA)"
+                 data-alt-en="Team FLAMA at the NASA International Space Apps Challenge 2026 in Seville, at the Spanish Space Agency headquarters (CREA building)"
+                 onerror="this.closest('.feat').classList.add('no-photo');this.parentNode.hidden=true">
+          </figure>
+          <div class="feat-body">
+            <p class="meta"><span class="pill" data-i18n="sa1">1.er puesto en Sevilla</span></p>
+            <h3>NASA International Space Apps Challenge 2026</h3>
+            <p class="meta"><span class="org" data-i18n="sa2">Equipo FLAMA · Agencia Espacial Española, Sevilla</span><span class="when" data-i18n="sa3">13–15 nov 2026</span></p>
+            <p data-i18n="sa4">Ganamos la sede de Sevilla, entre más de 100 participantes y 20 equipos, con el reto «Flame in Freefall»: cómo se comporta el fuego en microgravedad y cómo mejorar la seguridad contra incendios en misiones espaciales. Creamos un dashboard con datos de la NASA, una simulación 3D sobre una pieza CAD, FLAMMY (asistente virtual guía) y un asistente de IA con conversación por voz en tiempo real. Pasamos a la fase nacional.</p>
+            <p class="feat-role" data-i18n="sa5"><strong>Mi papel:</strong> desarrollé el asistente de IA conversacional con voz (Gemini Live como solución principal y un plan B 100 % local con Ollama) y su integración con la web del equipo.</p>
+            <p data-i18n="sa6">Equipo: Juan García Delgado, Ana Luna Martín, Alejandro Quintas Escobar, Álvaro Cárdenas Díaz y yo, todos de eUSRacing. Organizan la Agencia Espacial Española y Andalucía Emprende (Junta de Andalucía), en colaboración con la NASA.</p>
+            <ul class="tags">
+              <li data-i18n="tg1">IA conversacional por voz</li><li>Gemini Live</li><li>Ollama</li><li data-i18n="tg2">Datos de la NASA</li><li data-i18n="tg3">Simulación 3D</li><li>CAD</li><li>Dashboard</li>
+            </ul>
+            <p class="feat-links">
+              <a href="https://stce.us.es/noticias/estudiantes-de-la-us-ganan-el-nasa-space-apps-challenge-en-sevilla-con-mas-de-100" target="_blank" rel="noopener noreferrer"><span data-i18n="sa7">Noticia de la Universidad de Sevilla</span><span class="sr-only" data-i18n="sa9">(se abre en una pestaña nueva)</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a>
+              <a href="https://www.juntadeandalucia.es/emprendimientoandaluz/listado-de-noticias/andalucia-emprende-y-la-agencia-espacial-espanola-convierten-sevilla-en-punto" target="_blank" rel="noopener noreferrer"><span data-i18n="sa8">Noticia de la Junta de Andalucía</span><span class="sr-only" data-i18n="sa10">(se abre en una pestaña nueva)</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a>
+            </p>
+          </div>
+        </article>
         <article class="proj" tabindex="0">
           <h3 data-i18n="p1t">Asistente IA del reglamento MotoStudent</h3>
           <p class="meta"><span class="org">eUSRacing</span><span class="when">2026</span></p>
@@ -457,13 +583,25 @@ footer{padding:22px clamp(20px,5vw,72px) calc(22px + env(safe-area-inset-bottom,
 <script>
 (function(){
   var EN={
-    n0:"About",n1:"Experience",n2:"Projects",n3:"Leadership",n4:"Education",n5:"Skills",n6:"Contact",
+    n0:"About",n1:"Experience",n2:"Projects",n3:"Leadership",n4:"Education",n5:"Skills",n6:"Contact",n7:"News",
     loc:"Lanzarote / Seville",loc2:"Location",
     role:"Industrial Electronics and Electrical Engineering Student",
     lead:"In the eUSRacing MotoStudent team I am in charge of the electric motor dynamometer. I am looking for an internship or a first job as a junior engineer, ideally in robotics.",
     dl:"Download CV (PDF)",cta:"Get in touch",
     f1l:"Year",f1v:"4th year, Double Degree",f3l:"Scholarship",f3v:"Sputnik, 7th edition",f4l:"Looking for",f4v:"Robotics internship",
     hA:"About me",
+    hN:"News",nmore:"Read more",nless:"Read less",nnew:"New",
+    nd0:"17 Nov 2026",nsrc0:"My experience",nh0:"We won the Seville venue of the NASA Space Apps Challenge 2026",
+    nx0:"What the weekend was like with team FLAMA and what I built for the “Flame in Freefall” challenge.",
+    ps1:"From 13 to 15 November I took part with team FLAMA in the NASA International Space Apps Challenge 2026, at the Spanish Space Agency headquarters in the CREA building in Seville. It was organised by the Spanish Space Agency and Andalucía Emprende (Regional Government of Andalusia), in collaboration with NASA, and brought together more than 100 participants in 20 teams.",
+    ps2:"We chose the “Flame in Freefall” challenge: understanding how fire behaves in microgravity and how to improve fire safety on space missions. In 48 hours we built a solution with four parts: a dashboard with NASA data, a 3D simulation on a CAD part, FLAMMY, a virtual assistant that guides users through the tool, and an AI assistant you can talk to by voice in real time.",
+    ps3:"My part was that conversational assistant. I built it with Gemini Live as the main solution and prepared a fully local fallback with Ollama, which works without relying on external services. I then integrated it into the team’s website so that everything could be used as a single tool.",
+    ps4:"The team was Juan García Delgado, Ana Luna Martín, Alejandro Quintas Escobar, Álvaro Cárdenas Díaz and me. All five of us come from eUSRacing, the University of Seville’s MotoStudent team.",
+    ps5:"The result was first place in Seville and a place in the national round, where we will compete against the winning teams from the other venues in Spain. Thank you to the Spanish Space Agency, Andalucía Emprende and everyone who made the event in Seville possible. Now it is time to prepare for the next round.",
+    nd1:"16 Nov 2026",nlang1:"Article in Spanish",nnew1:"(opens in a new tab)",
+    nx1:"Team FLAMA wins the Seville venue with its project for the “Flame in Freefall” challenge and will represent Seville in the national round.",
+    nd2:"16 Nov 2026",nlang2:"Article in Spanish",nnew2:"(opens in a new tab)",
+    nx2:"Report on the hackathon at the Spanish Space Agency headquarters in Seville, with around a hundred participants, where FLAMA was the winning team.",
     ab1:"Fourth-year student on the Double Bachelor’s Degree in Industrial Electronics Engineering and Electrical Engineering at the University of Seville. I am looking for an internship or a first job as a junior engineer, ideally in robotics.",
     ab2:"In the eUSRacing MotoStudent team I am in charge of the electric motor dynamometer, combining power electronics, control, instrumentation and project planning. I am driven by turning ideas into working prototypes.",
     hB:"Experience",
@@ -476,6 +614,12 @@ footer{padding:22px clamp(20px,5vw,72px) calc(22px + env(safe-area-inset-bottom,
     j2b:"Automated processes and managed the properties across booking platforms.",
     j3t:"Grape Harvest &amp; Reception Platform Worker",j3o:"El Grifo Winery · Lanzarote",j3d:"Jul – Aug 2026",
     hC:"Projects",
+    sa1:"1st place in Seville",sa2:"Team FLAMA · Spanish Space Agency, Seville",sa3:"13–15 Nov 2026",
+    sa4:"We won the Seville venue, among more than 100 participants and 20 teams, with the “Flame in Freefall” challenge: how fire behaves in microgravity and how to improve fire safety on space missions. We built a dashboard with NASA data, a 3D simulation on a CAD part, FLAMMY (a virtual guide assistant) and an AI assistant with real-time voice conversation. We advanced to the national round.",
+    sa5:"<strong>My role:</strong> I developed the conversational voice AI assistant (Gemini Live as the main solution and a fully local fallback with Ollama) and integrated it into the team’s website.",
+    sa6:"Team: Juan García Delgado, Ana Luna Martín, Alejandro Quintas Escobar, Álvaro Cárdenas Díaz and me, all from eUSRacing. Organised by the Spanish Space Agency and Andalucía Emprende (Regional Government of Andalusia), in collaboration with NASA.",
+    sa7:"University of Seville news",sa8:"Regional Government of Andalusia news",sa9:"(opens in a new tab)",sa10:"(opens in a new tab)",
+    tg1:"Conversational voice AI",tg2:"NASA data",tg3:"3D simulation",
     p1t:"MotoStudent Rulebook AI Assistant",p1d:"AI web app that answers questions about the competition rulebook, citing the exact clause. Prototype deployed and proposed to the team.",
     p2o:"Product design",p2d:"Modular system of connectable hexagonal pieces: speaker, LED light, power module and wireless charger.",
     p3t:"Vital signs monitoring pill",p3o:"ESP32 prototype",p3d:"Device that measures patients’ vital signs, assesses critical events and raises alerts.",
@@ -494,6 +638,15 @@ footer{padding:22px clamp(20px,5vw,72px) calc(22px + env(safe-area-inset-bottom,
     hH:"Contact",mail:"Email",tel:"Phone",
     rev:"Last revised: October 2026"
   };
+  /* Noticias: etiqueta "Nuevo" en las de los últimos 30 días */
+  document.querySelectorAll(".news-item time[datetime]").forEach(function(tm){
+    var d=new Date(tm.getAttribute("datetime")+"T00:00:00"),days=(Date.now()-d.getTime())/864e5;
+    if(days>-1&&days<=31){
+      var s=document.createElement("span");s.className="live";
+      s.innerHTML='<i></i><span data-i18n="nnew">Nuevo</span>';
+      tm.parentNode.querySelector(".news-src").appendChild(s);
+    }
+  });
   var ES={};
   var nodes=document.querySelectorAll("[data-i18n]");
   nodes.forEach(function(n){ES[n.dataset.i18n]=n.innerHTML;});
@@ -519,6 +672,7 @@ footer{padding:22px clamp(20px,5vw,72px) calc(22px + env(safe-area-inset-bottom,
     nodes.forEach(function(n){var k=n.dataset.i18n;if(dict[k]!=null)n.innerHTML=dict[k];});
     document.documentElement.lang=lang;
     document.getElementById("side-img").alt=UI[lang].alt;
+    document.querySelectorAll("img[data-alt-es]").forEach(function(i){i.alt=lang==="en"?i.dataset.altEn:i.dataset.altEs;});
     document.getElementById("j1-dur").textContent=duration();
     document.querySelectorAll(".copy").forEach(function(b){if(!b.classList.contains("done"))b.textContent=UI[lang].copy;});
     document.querySelectorAll(".langs button").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.lang===lang?"true":"false");});
@@ -558,6 +712,29 @@ footer{padding:22px clamp(20px,5vw,72px) calc(22px + env(safe-area-inset-bottom,
       heads.forEach(function(h){if(h.classList.contains("pre"))hio.observe(h);});
     }
   }
+
+  /* Noticias: entrada escalonada y "Leer más" animado */
+  if(!reduce&&"IntersectionObserver" in window){
+    var newsItems=[].slice.call(document.querySelectorAll(".news-item"));
+    newsItems.forEach(function(it,k){if(it.getBoundingClientRect().top>window.innerHeight*0.9){it.classList.add("pre");it.style.transitionDelay=(k*90)+"ms";}});
+    var nio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.remove("pre");nio.unobserve(e.target);}});},{rootMargin:"0px 0px -10% 0px"});
+    newsItems.forEach(function(it){if(it.classList.contains("pre"))nio.observe(it);});
+  }
+  document.querySelectorAll(".news-post details").forEach(function(d){
+    var sm=d.querySelector("summary"),w=d.querySelector(".post-wrap");
+    sm.addEventListener("click",function(e){
+      if(reduce||!w.animate)return;
+      e.preventDefault();
+      if(d.open){
+        d.classList.add("closing");
+        var a=w.animate([{height:w.offsetHeight+"px",opacity:1},{height:"0px",opacity:0}],{duration:320,easing:"cubic-bezier(.65,0,.25,1)"});
+        a.onfinish=function(){d.open=false;d.classList.remove("closing");};
+      }else{
+        d.open=true;
+        w.animate([{height:"0px",opacity:0},{height:w.offsetHeight+"px",opacity:1}],{duration:420,easing:"cubic-bezier(.2,.8,.2,1)"});
+      }
+    });
+  });
 
   /* Línea de tiempo: se rellena al bajar */
   var tl=document.getElementById("timeline"),fill=document.getElementById("tl-fill");
